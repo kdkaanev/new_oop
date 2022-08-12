@@ -29,8 +29,17 @@ class MovieWorld:
         self.customers.append(dvd)
 
     def rent_dvd(self, customer_id: int, dvd_id: int):
+        customer = self.__find_by_id(self.customers, customer_id)
+        dvd = self.__find_by_id(self.dvds, dvd_id)
+
+
+    def return_dvd(self):
         pass
 
+    def __find_by_id(self, colections, obj_id):
+        for obj in colections:
+            if obj.id == obj_id:
+                return obj.id
 
 
 
