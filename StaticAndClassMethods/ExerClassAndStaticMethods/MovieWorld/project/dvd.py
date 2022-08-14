@@ -1,4 +1,4 @@
-from datetime import datetime
+from project.mapper import mapper
 
 class DVD:
     def __init__(self, name: str, id: int, creation_year: int, creation_month: str, age_restriction: int):
@@ -12,10 +12,10 @@ class DVD:
     @classmethod
     def from_date(cls, id: int, name: str, date: str, age_restriction: int):
         _, month, year = [int(x) for x in date.split('.')]
-        return cls(name, id, month,year,age_restriction)
+        return cls(name, id, year,mapper[month],age_restriction)
 
 
 
     def __repr__(self):
         status = 'rented' if self.is_rented else 'not rented'
-        return f"{id}: {self.name} ({self.creation_month} {self.creation_year}) has age restriction {self.age_restriction}. Status: {status}"
+        return f"{self.id}: {self.name} ({self.creation_month} {self.creation_year}) has age restriction {self.age_restriction}. Status: {status}"
