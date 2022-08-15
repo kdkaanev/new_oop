@@ -39,15 +39,18 @@ class Storage:
 
     def delete_category(self, category_id):
         category = self.__search_by_id(self.categories, category_id)
-        self.categories.remove(category)
+        if category in self.categories:
+            self.categories.remove(category)
 
     def delete_topic(self, topic_id):
         topic = self.__search_by_id(self.topics, topic_id)
-        self.topics.remove(topic)
+        if topic in self.topics:
+            self.topics.remove(topic)
 
     def delete_document(self, document_id):
         document = self.__search_by_id(self.documents, document_id)
-        self.documents.remove(document)
+        if document in self.documents:
+            self.documents.remove(document)
 
     def get_document(self, document_id):
         document = self.__search_by_id(self.documents, document_id)
