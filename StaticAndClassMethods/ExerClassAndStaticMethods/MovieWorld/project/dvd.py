@@ -1,4 +1,5 @@
-from project.mapper import mapper
+
+from calendar import month_name
 
 class DVD:
     def __init__(self, name: str, id: int, creation_year: int, creation_month: str, age_restriction: int):
@@ -12,7 +13,7 @@ class DVD:
     @classmethod
     def from_date(cls, id: int, name: str, date: str, age_restriction: int):
         _, month, year = [int(x) for x in date.split('.')]
-        return cls(name, id, year,mapper[month],age_restriction)
+        return cls(name, id, year,month_name[month],age_restriction)
 
 
 
