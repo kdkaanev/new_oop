@@ -8,12 +8,12 @@ class Vehicle(ABC):
 
 
 @abstractmethod
-def drive():
+def drive(self, distance):
     pass
 
 
 @abstractmethod
-def refuel():
+def refuel(self, fuel):
     pass
 
 
@@ -27,7 +27,7 @@ class Car(Vehicle):
         trip = self.fuel_quantity - (self.fuel_consumption + 0.9) * distance
         if trip > 0:
             self.fuel_quantity = trip
-        return self.fuel_quantity
+
 
     def refuel(self, fuel):
         self.fuel_quantity += fuel
@@ -43,7 +43,7 @@ class Truck(Vehicle):
         trip = self.fuel_quantity - (self.fuel_consumption + 1.6) * distance
         if trip > 0:
             self.fuel_quantity = trip
-        return self.fuel_quantity
+
 
     def refuel(self, fuel):
         self.fuel_quantity += fuel * 0.95
