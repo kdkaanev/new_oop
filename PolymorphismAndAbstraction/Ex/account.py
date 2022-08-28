@@ -2,36 +2,35 @@ class Account:
     def __init__(self, owner, amount=0):
         self.owner = owner
         self.amount = amount
-        self.transaction = []
+        self._transactions = []
 
     def add_transaction(self, amount):
         if not isinstance(amount, int):
             raise ValueError("please use int for amount")
-        self.transaction.append(amount)
-        self.amount += amount
+        self._transactions.append(amount)
 
     @property
     def balance(self):
-        return sum(self.transaction) + self.amount
+        return sum(self._transactions) + self.amount
 
+    @staticmethod
     def validate_transaction(self, account, amount_to_add):
-        if amount_to_add < 0 or self.balance <= 0:
+        if account.balance + amount_to_add < 0:
             raise ValueError("sorry cannot go in debt!")
-        self.add_transaction(amount_to_add)
+        account.add_transaction(amount_to_add)
         return f"New balance: {self.balance}"
 
-    def __repr__(self):
+    def __str__(self):
         return f"Account of {self.owner} with starting amount: {self.amount}"
 
-    def __str__(self):
+    def __repr__(self):
         return f"Account({self.owner}, {self.balance})"
 
     def __len__(self):
-        return len(self.transaction)
+        return len(self._transactions)
 
     def __getitem__(self, item):
-        self.transaction.reverse()
-        return self.transaction[item]
+        return self._transactions[item]
 
     def __gt__(self, other):
         return self.balance > other.balance
@@ -52,9 +51,13 @@ class Account:
         return self.balance != other.balance
 
     def __add__(self, other):
-        acc_name = f'{self.owner} {other.owner}'
+        acc_name = self.owner + '&' + other.owner
         new_amount = self.amount + other.amount
-        return Account(acc_name, new_amount)
+
+        new_acc = Account(acc_name, new_amount)
+        new_acc._transactions = self._transactions + other._transactions
+
+        return new_acc
 
 
 
