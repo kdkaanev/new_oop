@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 
+from food import Food
+
 
 class Animal(ABC):
     def __init__(self, name, weight, food_eaten=0):
@@ -11,9 +13,27 @@ class Animal(ABC):
     def make_sound(self):
         pass
 
+    @property
     @abstractmethod
-    def feed(self, food):
+    def alowed_feed(self):
         pass
+
+
+    @property
+    @abstractmethod
+    def weight_incrace(self):
+        pass
+
+
+
+    def feed(self, food: Food):
+        food_type = food.__class__.__name__
+        if food_type not in self.alowed_feed:
+            return f"{self.__class__.__name__} does not eat {food_type}!"
+        self.food_eaten += food.quantity
+        self.weight += food.quantity * self.weight_incrace
+        
+
 
 
 class Bird(Animal, ABC):
