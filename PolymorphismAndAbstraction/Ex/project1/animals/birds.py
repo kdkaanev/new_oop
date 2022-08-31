@@ -8,8 +8,14 @@ class Owl(Bird):
     def make_sound(self):
         return "Hoot Hoot"
 
-    def feed(self, food):
-        if
+    @property
+    def alowed_feed(self):
+        return ['meat']
+
+
+    @property
+    def weight_incrace(self):
+        return 0.25
 
 
 class Hen(Bird):
@@ -19,6 +25,11 @@ class Hen(Bird):
     def make_sound(self):
         return "Cluck"
 
+    @property
+    def alowed_feed(self):
+        return ['meat','vegetables', 'fruits']
 
-    def feed(self, food):
-        self.weight += 0.35
+
+    @property
+    def weight_incrace(self):
+        return 0.35

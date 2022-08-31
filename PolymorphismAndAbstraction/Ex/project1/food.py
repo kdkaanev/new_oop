@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+@abstractmethod
 class Food(ABC):
     def __init__(self,quantity):
         self.quantity = quantity
