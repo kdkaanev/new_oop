@@ -6,12 +6,16 @@ class Animal:
         return self.species
 
 
-def animal_sound(animals: list):
-    for animal in animals:
-        if animal.species == 'cat':
-            print('meow')
-        elif animal.species == 'dog':
-            print('woof-woof')
+    def animal_sound(animals: list):
+        for animal in animals:
+            if animal.species == 'cat':
+                print('meow')
+            elif animal.species == 'dog':
+                print('woof-woof')
+
+class AddAnimal(Animal):
+    def animal_sound(animals: list):
+
 
 
 animals = [Animal('cat'), Animal('dog')]
