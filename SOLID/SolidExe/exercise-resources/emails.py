@@ -5,13 +5,17 @@ class IContent(abc.ABC):
     def __init__(self, text):
         self.text = text
 
+    @abc.abstractmethod
+    def format(self):
+        pass
+
 
 class MyContent(IContent):
     def __init__(self, text):
         super().__init__(text)
 
     def format(self):
-        return '\n'.join(['<myML>', self.text, '</myML>'])
+        return ' '.join(['<myML>', self.text, '</myML>'])
 
 
 class IEmail(abc.ABC):
@@ -31,9 +35,9 @@ class IEmail(abc.ABC):
 
 class Email(IEmail):
 
-    def __init__(self, protocol, content_type):
+    def __init__(self, protocol):
         self.protocol = protocol
-        self.content_type = content_type
+
         self.__sender = None
         self.__receiver = None
         self.__content = None
