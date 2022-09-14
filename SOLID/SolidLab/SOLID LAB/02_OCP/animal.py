@@ -15,11 +15,13 @@ class Animal:
 
 class AddAnimal(Animal):
     def animal_sound(animals: list):
+        pass
 
 
 
 animals = [Animal('cat'), Animal('dog')]
-animal_sound(animals)
+an = Animal(animals)
+print(an.animal_sound(animals))
 
 ## добавете ново животно и рефакторирайте кода да работи без да се налага да се правят промени по него
 ## при добавяне на нови животни
