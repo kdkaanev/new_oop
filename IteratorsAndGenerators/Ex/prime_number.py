@@ -1,20 +1,17 @@
-import math
-
-
-def is_prime(number):
-    if number <= 1:
+def is_prime(num):
+    if num <= 1:
         return False
     is_prime = True
-    for i in range(2, number):
-        if number % i == 0:
+    for i in range(2, num):
+        if num % i == 0:
             is_prime = False
             break
     return is_prime
 
 
-def get_primes(number):
-    for num in number:
-        if is_prime(number):
+def get_primes(numbers):
+    for num in numbers:
+        if is_prime(num):
             yield num
 
 
