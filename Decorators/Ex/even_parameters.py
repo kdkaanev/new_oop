@@ -1,4 +1,8 @@
+from functools import wraps
+
+
 def even_parameters(func):
+    @wraps(func)
     def wrapper(*args):
         for x in args:
             if not isinstance(x, int) or x % 2 != 0:
@@ -33,3 +37,4 @@ print(multiply(2, 4, 6, 8))
 print(multiply(2, 4, 9, 8))
 # 384
 # Please use only even numbers!
+print(add)
