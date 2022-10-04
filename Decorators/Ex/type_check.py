@@ -3,13 +3,14 @@ def type_check(type):
         def wrapper(*args, **kwargs):
             for el in args:
                 if isinstance(el, type):
-                    try:
                         return func(*args)
-                    except:'Bad Type'
+                else:
+                        return 'Bad Type'
 
 
 
         return wrapper
+    return decorator
 
 
 

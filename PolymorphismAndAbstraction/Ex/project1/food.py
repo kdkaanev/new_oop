@@ -1,27 +1,16 @@
-from abc import ABC, abstractmethod
+from functools import wraps
+def multiply(times):
+    @wraps(times)
+    def decorator(*args, **kwargs):
+        result = times(*args, **kwargs)
 
-@abstractmethod
-class Food(ABC):
-    def __init__(self,quantity):
-        self.quantity = quantity
+        return result * times
 
-
-class Vegetable(Food):
-    def __init__(self, quantity):
-        super().__init__(quantity)
-
-class Fruit(Food):
-    def __init__(self, quantity):
-        super().__init__(quantity)
-
-class Meat(Food):
-    def __init__(self, quantity):
-        super().__init__(quantity)
+    return decorator
 
 
-class Seed(Food):
-    def __init__(self, quantity):
-        super().__init__(quantity)
+@multiply(3)
+def add_ten(number):
+    return number + 10
 
-
-
+print(add_ten(3))
