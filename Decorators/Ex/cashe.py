@@ -1,19 +1,15 @@
-from re import L
-
-
 def cache(func):
+    memo = {}
     def wrapper(n):
-        def log():
-            log ={}
-            result = func(n)
-            if n not in log:
-                log[n] = result
-        return log
-    return wrapper
+        if n in memo:
+            return memo[n]
+        result = func(n)
+        memo[n] = result
+        return result
+    wrapper.log = memo
+    return wrapper   
 
-    
-
-#@cache
+@cache
 
 def fibonacci(n):
 
