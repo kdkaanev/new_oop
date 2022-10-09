@@ -1,20 +1,14 @@
 
-import unittest
+
 
 from TestWorker.worker import Worker
+import unittest
 
-'''
-	
-
-•	Test if the worker's money is increased by his salary correctly after the work method is called
-•	Test if the worker's energy is decreased after the work method is called	
-•	Test if the get_info method returns the proper string with correct values
-
-'''
 class WorkerTest(unittest.TestCase):
     NAME = 'Test Worker'
     SALARY = 1024
-    ENERGY = 1
+    ENERGY = 2
+    MONEY = 0
     def setUp(self) -> None:
         self.worker = Worker(self.NAME, self.SALARY, self.ENERGY)
 
@@ -32,9 +26,26 @@ class WorkerTest(unittest.TestCase):
         worker = Worker(self.NAME, self.SALARY, 0)
         with self.assertRaises(Exception) as ex:
             worker.work()
+            self.assertIsNone(ex)
 
     def test_work__when_enougt_energy__money_in_salary_raise(self):
-        pass
+        self.worker.work()
+        self.worker.work()
+        self.assertEqual(2 * self.SALARY, self.worker.money)
+
+    def test_work__espect_decrease_energy(self):
+        self.worker.work()
+        self.assertEqual(self.ENERGY - 1, self.worker.energy)
+
+    def test_get_info__espect_proper_string(self):
+        self.worker.get_info()
+        result = f'{self.worker.name} has saved {self.worker.money} money.'
+        espected = f'{self.NAME} has saved {0} money.'
+        self.assertEqual(result, espected)
+
+
+if __name__ == '__main__':
+    unittest.main()
 
 
 
