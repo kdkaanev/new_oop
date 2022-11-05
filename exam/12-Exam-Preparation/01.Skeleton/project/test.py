@@ -1,9 +1,23 @@
-from controller import Controller
-from player import Player
+from project.controller import Controller
+from project.player import Player
+from project.supply.drink import Drink
+from project.supply.food import Food
 
-
-player = Player('putjo', 25, 17)
-player2 = Player('putjo1', 23, 34)
 controller = Controller()
-print(controller.add_player(player, player2))
-
+apple = Food("apple", 22)
+cheese = Food("cheese")
+juice = Drink("orange juice")
+water = Drink("water")
+first_player = Player('Peter', 15)
+second_player = Player('Lilly', 12, 94)
+print(controller.add_supply(cheese, apple, cheese, apple, juice, water, water))
+print(controller.add_player(first_player, second_player))
+print(controller.duel("Peter", "Lilly"))
+print(controller.add_player(first_player))
+print(controller.sustain("Lilly", "Drink"))
+first_player.stamina = 0
+print(controller.duel("Peter", "Lilly"))
+print(first_player)
+print(second_player)
+controller.next_day()
+print(controller)
