@@ -35,6 +35,7 @@ class Controller:
         if player.stamina == player.MAX_STAMINA:
             return f"{player_name} have enough stamina."
         player.stamina = min(player.stamina + suplay.energy, player.MAX_STAMINA)
+        self.supplies.pop(indx)
         return f"{player_name} sustained successfully with {suplay.name}."
         
         
@@ -50,20 +51,20 @@ class Controller:
             return f"Player {first_player_name} does not have enough stamina.\n" \
                    f"Player {second_player_name} does not have enough stamina."
 
-        if player2.stamina < player2.stamina:
+        if player2.stamina < player1.stamina:
             player1, player2 = player2, player1
 
         player1_damage = player1.stamina / 2
-        player2.stamina = max(player1_damage - player2.stamina, 0)
+        player2.stamina = max(player2.stamina - player1_damage, 0)
         if player2.stamina == 0:
             return f"Winner: {first_player_name}"
 
         player2_damage = player2.stamina / 2
-        player1.stamina = max(player2_damage - player1.stamina, 0)
+        player1.stamina = max(player1.stamina - player2_damage, 0)
         if player1.stamina == 0:
             return f"Winner: {second_player_name}"
 
-        winner = first_player_name if player1.stamina > player2.stamina else second_player_name
+        winner = player1.name if player1.stamina > player2.stamina else player2.name
         return f"Winner: {winner}"
 
 
