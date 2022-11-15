@@ -13,7 +13,7 @@ class TestCar(TestCase):
         car = Car(self.MAKE, self.MODEL, self.FUEL_CONSUMPTON, self.FUEL_CAPACITY)
 
     def test_init(self):
-        pass
+        self.assertEqual(self.MAKE, car_manager.make)
 
     def test_make__when_is_null_or_empty__espected_raise(self):
         pass
