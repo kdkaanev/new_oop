@@ -1,5 +1,5 @@
-from io import DEFAULT_BUFFER_SIZE
-from supply.supply import Supply
+
+from project.supply.supply import Supply
 
 
 class Drink(Supply):

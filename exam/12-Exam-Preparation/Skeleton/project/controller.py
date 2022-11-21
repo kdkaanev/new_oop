@@ -1,5 +1,4 @@
-
-from player import Player
+from project.player import Player
 class Controller:
 
     def __init__(self) -> None:
@@ -34,7 +33,7 @@ class Controller:
                 raise Exception("There are no drink supplies left!")
         if player.stamina == player.MAX_STAMINA:
             return f"{player_name} have enough stamina."
-        player.stamina = min(player.stamina + suplay.energy, player.MAX_STAMINA)
+        player.stamina = min(player.stamina + suplay.energy, Player.MAX_STAMINA)
         self.supplies.pop(indx)
         return f"{player_name} sustained successfully with {suplay.name}."
         

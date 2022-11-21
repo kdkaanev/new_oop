@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5cf079ee-fe3b-4d77-bca6-c0338e0a0334" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/01.Skeleton/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/01.Skeleton/.idea/01.Skeleton.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/01.Skeleton/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/01.Skeleton/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/01.Skeleton/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/01.Skeleton/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/01.Skeleton/project/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/01.Skeleton/project/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/01.Skeleton/project/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/01.Skeleton/project/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/01.Skeleton/project/.idea/project.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/01.Skeleton/project/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/01.Skeleton/project/.vscode/launch.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/01.Skeleton/project/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/01.Skeleton/project/controller.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/01.Skeleton/project/player.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/01.Skeleton/project/supply/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/01.Skeleton/project/supply/drink.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/01.Skeleton/project/supply/food.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/01.Skeleton/project/supply/supply.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/01.Skeleton/project/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/03.UnitTesting-Skeleton/project/movie.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/03.UnitTesting-Skeleton/project/movie.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/03.UnitTesting-Skeleton/project/test/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../exam/12-Exam-Preparation/03.UnitTesting-Skeleton/project/test/test.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="2HkvtuXqfMP6UNV6NPHrSWC8H15" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5cf079ee-fe3b-4d77-bca6-c0338e0a0334" name="Changes" comment="" />
+      <created>1668842113885</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1668842113885</updated>
+    </task>
+    <servers />
+  </component>
+</project>
