@@ -1,13 +1,15 @@
 from abc import ABC, abstractmethod
 from project.user import User
 
+
 class Movie(ABC):
     MIN_MOVIE_YEAR = 1888
-    def __int__(self, title: str, year: int, owner: object, age_restriction: int):
-        self.age_restriction = age_restriction
-        self.owner = owner
-        self.year = year
+
+    def __init__(self, title, year, owner, age_restriction):
         self.title = title
+        self.year = year
+        self.owner = owner
+        self.age_restriction = age_restriction
         self.likes = 0
 
     @property
@@ -36,12 +38,10 @@ class Movie(ABC):
 
     @owner.setter
     def owner(self, value):
-        if not isinstance(value, User):
+        if isinstance(value, User):
             raise ValueError("The owner must be an object of type User!")
         self._owner = value
 
     @abstractmethod
     def details(self):
         pass
-
-
