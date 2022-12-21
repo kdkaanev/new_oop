@@ -17,7 +17,7 @@ class Movie(ABC):
 
     @property
     def title(self):
-        return
+        return self.__title
 
     @title.setter
     def title(self, value):
@@ -40,7 +40,7 @@ class Movie(ABC):
     @owner.setter
     def owner(self, value):
         self.__validate_owner(value)
-        self.owner = value
+        self.__owner = value
 
     @property
     def age_restriction(self):
@@ -53,7 +53,7 @@ class Movie(ABC):
 
     @property
     def age_restriction_error_message(self):
-        return f"{self.type} movies must be restricted for audience under {self.age_restriction} years!"
+        return f"{self.type} movies must be restricted for audience under {self.MIN_AGE_RESTRICTION} years!"
 
     @staticmethod
     def __validate_title(title):
@@ -65,21 +65,23 @@ class Movie(ABC):
 
     @staticmethod
     def __validate_owner(owner):
-        if owner not in User:
+        if not isinstance(owner, User):
             raise ValueError("The owner must be an object of type User!")
 
-    def validate_age_restriction(self, age_restriction):
+    def __validate_age_restriction(self, age_restriction):
         validate_greater_that_value(age_restriction, self.MIN_AGE_RESTRICTION, self.age_restriction_error_message)
 
     def details(self):
-        return f"{self.type} -" \
-               f'Title:{self.title},' \
-               f'Year:{self.year},' \
-               f'Age restriction:{self.age_restriction},' \
-               f'Likes:{self.likes},' \
-               f'Owned by:{self.owner.usrname}'
+        return f"{self.type} - " \
+               f'Title:{self.title}, ' \
+               f'Year:{self.year}, ' \
+               f'Age restriction:{self.age_restriction}, ' \
+               f'Likes:{self.likes}, ' \
+               f'Owned by:{self.owner.username}'
 
-    @abstractmethod
+
+
     @property
+    @abstractmethod
     def type(self):
         return

@@ -45,8 +45,8 @@ class User:
         if self.movies_owned:
             movies_owned_str = os.linesep.join(m.details() for m in self.movies_owned)
 
-        return f"Username: {self.username}, Age: {self.age}" \
-               "Liked movies:" \
-               f'{movies_liked_str}' \
-               "Owned movies:" \
-               f'{movies_owned_str}'
+        return f'''Username: {self.username}, Age: {self.age}
+    Liked movies:
+    {movies_liked_str}
+    Owned movies:
+    {movies_owned_str}'''
