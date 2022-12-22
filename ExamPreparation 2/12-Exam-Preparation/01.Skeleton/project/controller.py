@@ -3,6 +3,7 @@ from project.supply.food import Food
 from project import supply
 
 from project.player import Player
+from supply import food, drink
 from supply.supply import Supply
 
 
@@ -75,6 +76,62 @@ class Controller:
 
         return f"{player_name} sustained successfully with {supply}."
 
+    def duel(self,first_player_name: str, second_player_name: str):
+        """
+        The two players participate in a duel, each of them could only attack once.
+            If a 'player.stamina' is 0 -he could not participate in a duel.
+                -return a message "Player {player_name} does not have enough stamina."
+                -discontinue the duel.
+             If both players' stamina is 0:
+                -return the message for both players on separate lines, starting from the first one given.
+        If both players have a positive value of stamina, the duel begins:
+        The player with a lower value of stamina attacks first.
+            -He reduces the other player's stamina by a value equal to one-half of his own (the attacker's) stamina.
+        Next, the other player attacks the same way:
+            -reduces the first player's stamina by a value equal to one-half of his own (the second attacker's) stamina).
+        If, during the duel, a player's stamina becomes equal to or less than 0, it should be set to 0.
+            -The player immediately loses the duel
+            -the other player becomes a winner.
+        Otherwise, the winner is the player who has left with more stamina.
+        Return the winner's name in the format: "Winner: {winner_name}"
+        Note: there will be no case where both players will have equal stamina values at the beginning or in the end.
+        Note: the players will always exist in the players list.
+
+        """
+
+        first_player = self.__search_player_by_name(first_player_name)
+        second_player = self.__search_player_by_name(second_player_name)
+
+        self.__validate_zerro_stanima(first_player, second_player)
+
+        self.__duel(first_player, second_player)
+        self.__check_stamina_is_positive(first_player, second_player)
+        self.__duel(first_player, second_player)
+        self.__winner(first_player, second_player)
+
+    def next_day(self):
+        """
+        First, the 'stamina' of each added player gets reduced by the result of multiplying their age by 2
+            If a 'player.stamina' becomes less than 0:
+                -it should be set to 0
+•	    Then, you need to sustain each player by giving them:
+            one food (first) and one drink (second)
+
+        """
+
+        for player in self.players:
+            player.stamina = max(player.stamina - player.age * 2, 0)
+            player.stamina = min(player.stamina + drink.energy, 100)
+            player.stamina = min(player.stamina + Food.energy, 100)
+
+    def __str__(self):
+        result =''
+        for player in self.players:
+            result += f"Player: {player.name}, {player.age}, {player.stamina}, {player.need_sustenance}/n"
+        for supply in self.supplies:
+            result += f'{supply.type}: {supply.name}, {supply.energy}/n'
+        return result.strip()
+
 
 
     def __search_player_by_name(self, player_name) -> Player:
@@ -113,3 +170,33 @@ class Controller:
                 break
         else:
             raise Exception(self.NO_DRINK_ERROR_MESSAGE)
+
+    def __duel(self, first_player, second_player):
+        if first_player.stamina < second_player.stamina:
+           return max(second_player.stamina - first_player.stamina * 0.5, 0)
+        return max(first_player.stamina - second_player.stamina *0.5, 0)
+
+    def __check_stamina_is_positive(self, first_player, second_player):
+        if first_player.stamina == 0:
+            return f"Winner: {second_player.name}"
+        elif second_player.stamina == 0:
+            return f"Winner: {first_player.name}"
+        return True
+
+    def __winner(self, first_player, second_player):
+        if first_player.stamina > second_player.stamina:
+            return f"Winner: {first_player.name}"
+        return f"Winner: {second_player.name}"
+
+    def __validate_zerro_stanima(self,first_player, second_player):
+        if first_player.stamina == 0:
+            return f"Player {first_player.name} does not have enough stamina."
+        elif second_player.stamina == 0:
+            return f"Player {second_player.name} does not have enough stamina."
+        elif first_player.stamina == 0 and second_player.stamina == 0:
+            return f"Player {first_player.name} does not have enough stamina."\
+                    f"Player {second_player.name} does not have enough stamina."
+    
+    
+    
+        
