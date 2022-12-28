@@ -25,12 +25,14 @@ class Controller:
 
 
         """
+        added_player  = []
         for player in args:
             if player in self.players:
                 continue
             self.players.append(player)
             self.player_by_player_names[player.name] = player
-        return f"Successfully added: {', '.join(self.player_by_player_names.keys())}"
+            added_player.append(player.name)
+        return f"Successfully added: {', '.join(added_player)}"
 
     def add_supply(self, *args):
         """
@@ -61,20 +63,22 @@ class Controller:
 •	    If the player is not in the 'players':
             -ignore the command.
 
-
+ 
         """
         player = self.__search_player_by_name(player_name)
+        supply = self.__find_suply_by_name(sustenance_type)
         corect_type = 'Food', 'Drink'
         if player not in self.players or sustenance_type not in corect_type:
             return
-        self.__validate_player_doesnt_need_susteance(player)
+
         if sustenance_type == 'Food':
             self.__validate_no_food(sustenance_type)
         elif sustenance_type == 'Drink':
             self.__validate_no_drink(sustenance_type)
+        self.__validate_player_doesnt_need_susteance(player)
         self.__take_suplly(sustenance_type, player)
 
-        return f"{player_name} sustained successfully with {supply}."
+        return f"{player_name} sustained successfully with {supply.name}."
 
     def duel(self,first_player_name: str, second_player_name: str):
         """
@@ -101,13 +105,15 @@ class Controller:
 
         first_player = self.__search_player_by_name(first_player_name)
         second_player = self.__search_player_by_name(second_player_name)
-
-        self.__validate_zerro_stanima(first_player, second_player)
-
-        self.__duel(first_player, second_player)
-        self.__check_stamina_is_positive(first_player, second_player)
-        self.__duel(first_player, second_player)
-        self.__winner(first_player, second_player)
+        if first_player.stamina == 0 or second_player.stamina == 0:
+            return self.__validate_zerro_stanima(first_player, second_player)
+        if second_player.stamina < first_player.stamina:
+            first_player, second_player = second_player, first_player
+        first_player_atack = self.__atack(first_player, second_player)
+        if first_player_atack:
+            self.__winner(first_player, second_player)
+        self.__atack(second_player, first_player)
+        return self.__winner(first_player, second_player)
 
     def next_day(self):
         """
@@ -121,16 +127,13 @@ class Controller:
 
         for player in self.players:
             player.stamina = max(player.stamina - player.age * 2, 0)
-            player.stamina = min(player.stamina + drink.energy, 100)
-            player.stamina = min(player.stamina + Food.energy, 100)
+            self.sustain(player.name, 'Food')
+            self.sustain(player.name, 'Drink')
 
     def __str__(self):
-        result =''
-        for player in self.players:
-            result += f"Player: {player.name}, {player.age}, {player.stamina}, {player.need_sustenance}/n"
-        for supply in self.supplies:
-            result += f'{supply.type}: {supply.name}, {supply.energy}/n'
-        return result.strip()
+        return '\n'.join([str(x) for x in self.players]) + '\n' + '\n'.join([x.details() for x in self.supplies])
+
+
 
 
 
@@ -157,7 +160,7 @@ class Controller:
                 name = teaked_supply.__class__.__name__
                 if name == sustenance_type:
 
-                    continue
+                    return True
             else:
                 raise Exception(self.NO_FOOD_ERROR_MESSAGE)
 
@@ -171,11 +174,10 @@ class Controller:
         else:
             raise Exception(self.NO_DRINK_ERROR_MESSAGE)
 
-    def __duel(self, first_player, second_player):
-        if first_player.stamina < second_player.stamina:
-           return max(second_player.stamina - first_player.stamina * 0.5, 0)
-        return max(first_player.stamina - second_player.stamina *0.5, 0)
-
+    def __atack(self, atacker, enemy):
+        atacker_damage = atacker.stamina / 2
+        enemy.stamina = max(enemy.stamina - atacker_damage, 0)
+        return enemy.stamina == 0
     def __check_stamina_is_positive(self, first_player, second_player):
         if first_player.stamina == 0:
             return f"Winner: {second_player.name}"
@@ -189,13 +191,19 @@ class Controller:
         return f"Winner: {second_player.name}"
 
     def __validate_zerro_stanima(self,first_player, second_player):
+        error_message = ''
         if first_player.stamina == 0:
-            return f"Player {first_player.name} does not have enough stamina."
-        elif second_player.stamina == 0:
-            return f"Player {second_player.name} does not have enough stamina."
-        elif first_player.stamina == 0 and second_player.stamina == 0:
-            return f"Player {first_player.name} does not have enough stamina."\
-                    f"Player {second_player.name} does not have enough stamina."
+            error_message += f"Player {first_player.name} does not have enough stamina."
+        if second_player.stamina == 0:
+            error_message += '\n' + f"Player {second_player.name} does not have enough stamina."
+        if error_message:
+            return error_message.strip()
+
+    def __find_suply_by_name(self, sustenance_type):
+        for idx in range(len(self.supplies)-1, -1, -1):
+            supply = self.supplies[idx]
+            if supply.__class__.__name__ == sustenance_type:
+                return supply
     
     
     

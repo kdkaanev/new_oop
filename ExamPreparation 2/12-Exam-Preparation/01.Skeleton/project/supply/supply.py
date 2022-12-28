@@ -36,7 +36,7 @@ class Supply(ABC):
         pass
 
     def details(self):
-        return f"{self.type}: {self.name}, {self.energy}"
+        return f"{self.__class__.__name__}: {self.name}, {self.energy}"
 
     def __validate_empty_string(self, name):
         if not isinstance(name, str) or len(name) == 0:

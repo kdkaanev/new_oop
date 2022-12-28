@@ -12,7 +12,7 @@ class Player:
         self.name = name
         self.age = age
         self.stamina = stamina
-        self.need_sustenance = (stamina < self.MAX_STAMINA)
+
 
 
 
@@ -48,13 +48,17 @@ class Player:
         self.__validate_max_number(value, self.STAMINA_ERROR_MESSAGE, self.MAX_STAMINA)
         self.__stamina = value
 
+    @property
+    def need_sustenance(self):
+        return self.stamina < self.MAX_STAMINA
+
     def __str__(self):
         return f"Player: {self.name}, {self.age}, {self.stamina}, {self.need_sustenance}"
 
     def __validate_name_exist(self,name):
         for n in self.player_name:
             if n == name:
-                raise ValueError(f"Name {name} is already used!")
+                raise Exception(f"Name {name} is already used!")
 
 
     def __generate_name_exist_error_message(self,name):
@@ -70,11 +74,11 @@ class Player:
 
     @staticmethod
     def __validate_min_number(value, err_message, num):
-        if not isinstance(value, int) or value < num:
+        if not isinstance(value, (int, float)) or value < num:
             raise ValueError(err_message)
 
     @staticmethod
     def __validate_max_number(value, err_message, num):
-        if not isinstance(value, int) or value > num:
+        if not isinstance(value, (int, float)) or value > num:
             raise ValueError(err_message)
 
