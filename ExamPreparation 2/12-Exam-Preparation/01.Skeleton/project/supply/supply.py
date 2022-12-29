@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from project.utill import validate
+
 
 class Supply(ABC):
     MIN_ENERGY = 0
@@ -18,8 +18,6 @@ class Supply(ABC):
     def name(self, value):
         self.__validate_empty_string(value)
         self.__name = value
-
-
 
     @property
     def energy(self):
@@ -46,6 +44,3 @@ class Supply(ABC):
     def __validate_min_number(value, err_message, num):
         if not isinstance(value, int) or value < num:
             raise ValueError(err_message)
-
-
-
