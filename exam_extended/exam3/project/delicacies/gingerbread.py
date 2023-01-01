@@ -12,3 +12,5 @@ class Gingerbread(Delicacy):
     def details(self):
         return f"Gingerbread {self.name}: {self.GINGERBREAD_PORTION}g - {self.price:.2f}lv."
 
+    def type(self):
+        return 'Gingerbread'

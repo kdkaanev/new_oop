@@ -10,4 +10,7 @@ class Stolen(Delicacy):
         self.name = name
 
     def details(self):
-        return f"Gingerbread {self.name}: {self.STOLEN_PORTION}g - {self.price:.2f}lv."
+        return f"Stolen {self.name}: {self.STOLEN_PORTION}g - {self.price:.2f}lv."
+
+    def typpe(self):
+        return 'Stolen'

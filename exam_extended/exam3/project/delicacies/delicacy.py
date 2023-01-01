@@ -27,6 +27,14 @@ class Delicacy(ABC):
         self.__validate_price(value)
         self.__price = value
 
+    @property
+    def portion(self):
+        return self.__portion
+
+    @portion.setter
+    def portion(self, value):
+        self.__portion = value
+
     @staticmethod
     def __is_falls_name(name):
         if not isinstance(name, str) or name.isspace():
@@ -38,4 +46,8 @@ class Delicacy(ABC):
 
     @abstractmethod
     def details(self):
+        pass
+
+    @abstractmethod
+    def type(self):
         pass
