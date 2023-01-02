@@ -126,11 +126,9 @@ class ChristmasPastryShopApp:
                     "Bill: {bill - formatted to the second decimal}lv."
         """
         booth = self.__find_booth_by_number(booth_number)
-        reserve = booth.reserve
         bill = booth.price_for_reservation
-        for order in booth.delicacy_orders:
-            bill += order.price * booth.reserve.number
-
+        for delicacy in booth.delicacy_orders:
+            bill += delicacy.price
         self.income += bill
         booth.delicacy_orders.clear()
         booth.is_reserved = False
@@ -140,7 +138,7 @@ class ChristmasPastryShopApp:
 
 
     def get_income(self):
-        pass
+        return f"Income: {self.income:.2f}lv."
 
     def __find_delcacy_by_name(self, name) -> Delicacy:
         for delcacy in self.delicacies:
