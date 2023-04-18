@@ -13,7 +13,7 @@ class Meal(ABC):
 
     @name.setter
     def name(self, value):
-        if isinstance(value, str) or len(value) <= 0:
+        if not isinstance(value, str) or len(value) <= 0:
             raise ValueError("Name cannot be an empty string!")
         self.__name = value
 
