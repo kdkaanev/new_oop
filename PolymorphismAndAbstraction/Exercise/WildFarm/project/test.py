@@ -1,5 +1,5 @@
-from project.animals.birds import Owl
-from project.food import Meat, Vegetable
+from project.animals.birds import Owl, Hen
+from project.food import Meat, Vegetable, Fruit
 
 owl = Owl("Pip", 10, 10)
 print(owl)
@@ -9,3 +9,13 @@ owl.feed(meat)
 veg = Vegetable(1)
 print(owl.feed(veg))
 print(owl)
+hen = Hen("Harry", 10, 10)
+veg = Vegetable(3)
+fruit = Fruit(5)
+meat = Meat(1)
+print(hen)
+print(hen.make_sound())
+hen.feed(veg)
+hen.feed(fruit)
+hen.feed(meat)
+print(hen)

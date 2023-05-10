@@ -12,7 +12,8 @@ class Mouse(Mammal):
     def feed(self, food: Food):
         if not isinstance(food, (Vegetable, Fruit)):
             return f"{self.__class__.__name__} does not eat {food.__class__.__name__}!"
-        self.weight += 0.10
+        self.weight += 0.10 *food.quantity
+        self.food_eaten += food.quantity
 
 
 class Dog(Mammal):
@@ -25,13 +26,13 @@ class Dog(Mammal):
     def feed(self, food: Food):
         if not isinstance(food, Meat):
             return f"{self.__class__.__name__} does not eat {food.__class__.__name__}!"
-        self.weight += 0.40
+        self.weight += 0.40 * food.quantity
+        self.food_eaten += food.quantity
 
 
 class Cat(Mammal):
-   def __init__(self, name: str, weight: float, living_region: str):
-
-    super().__init__(name, weight, living_region)
+    def __init__(self, name: str, weight: float, living_region: str):
+        super().__init__(name, weight, living_region)
 
     def make_sound(self):
         return "Meow"
@@ -39,13 +40,13 @@ class Cat(Mammal):
     def feed(self, food: Food):
         if not isinstance(food, (Vegetable, Meat)):
             return f"{self.__class__.__name__} does not eat {food.__class__.__name__}!"
-        self.weight += 0.30
+        self.weight += 0.30 * food.quantity
+        self.food_eaten += food.quantity
 
 
 class Tiger(Mammal):
-  def __init__(self, name: str, weight: float, living_region: str):
-
-    super().__init__(name, weight, living_region)
+    def __init__(self, name: str, weight: float, living_region: str):
+        super().__init__(name, weight, living_region)
 
     def make_sound(self):
         return "ROAR!!!"
@@ -53,5 +54,5 @@ class Tiger(Mammal):
     def feed(self, food: Food):
         if not isinstance(food, Meat):
             return f"{self.__class__.__name__} does not eat {food.__class__.__name__}!"
-        self.weight += 1.00
-
+        self.weight += 1.00 * food.quantity
+        self.food_eaten += food.quantity
