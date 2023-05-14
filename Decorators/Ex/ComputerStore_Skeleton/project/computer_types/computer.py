@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+import math
 
 
 class Computer(ABC):
@@ -40,3 +41,10 @@ class Computer(ABC):
     def __check_valid_name(self, value, name):
         if not isinstance(value, str) or value.isspace():
             raise ValueError(self.NAME_ERROR_MESSAGE + name)
+
+    def __check_processor_is_available(self, proc, available_proc):
+        if proc not in available_proc.keys():
+            raise ValueError(
+                f"{proc} is not compatible with desktop computer {self.manufacturer} {self.model}!"
+            )
+
